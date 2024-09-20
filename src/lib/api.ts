@@ -29,6 +29,29 @@
   }
 `;
 
+const footerCollection = `
+  number
+  title
+  text {
+    json
+    links {
+      entries {
+        inline {
+          sys {
+          id
+        }
+        ... on PhoneNumber {
+        phoneNumber
+      }
+    }
+  }
+    }
+  }
+  image {
+    url
+  }
+`
+
 // get requets, thinking of making this dynamic for all the get request... but the fields are different for each content type\
 //not sure what this slug is yet and how important it maye be: authorCollection(where: { slug_exists: true }, order: date_DESC, preview:
 export async function getNavCollection(isDraftMode: boolean): Promise<any[]> {
@@ -44,13 +67,28 @@ const entries = await fetchGraphQL(
  }`,
  isDraftMode,
 );
-// console.log('this is the navigationBar collection: ', entries.data.navigationBarCollection.items)
-// let navigationInfo = entries.data.navigationBarCollection.items;
-console.log('what is entries: ', entries)
-return extractPostEntries(entries);
+// console.log('what is entries: ', entries)
+return extractPostEntries(entries, 'navigationBarCollection');
 }
 
-//need to figure out how im going to parse through rich text, creat another function that will parse? 
+//this will query the footer collection
+export async function getFooterCollection(isDraftMode: boolean): Promise<any[]> {
+  const entries = await fetchGraphQL(
+   `query {
+     footerCollection(preview: ${
+       isDraftMode ? "true" : "false"
+     }, limit: 5) {
+       items {
+         ${footerCollection}
+       }
+     }
+   }`,
+   isDraftMode,
+  );
+  console.log('entries for footer collection: ', entries)
+  return extractPostEntries(entries, 'footerCollection');
+  }
+
 
 
 
@@ -59,8 +97,8 @@ return extractPostEntries(entries);
 //but aslo this is only for the smaller websites
 
 //this function extracts the collection... okay
-function extractPostEntries(fetchResponse: any): any[] {
-return fetchResponse?.data?.navigationBarCollection?.items;
+function extractPostEntries(fetchResponse: any, collection: string): any[] {
+return fetchResponse?.data?.[collection]?.items;
 };
 
 

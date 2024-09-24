@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppProvider } from './context';
-import { getFooterCollection } from "@/lib/api"
+import { Layout } from './context';
+import { getFooterCollection } from "@/lib/api";
+import { getNavCollection } from "@/lib/api";
 import { draftMode } from "next/headers";
+import NavigationBar from "./navigationBar";
+import Footer from "./footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +24,17 @@ Readonly<{
 {
   const { isEnabled } = draftMode();
   const footerData = await getFooterCollection(isEnabled);
+  const navData = await getNavCollection(isEnabled);
   
   return (
     <html lang="en">
-      <AppProvider sharedData={footerData}>
-        <body className={inter.className}>{children}</body>
-      </AppProvider>
+      {/* <Layout sharedData={footerData}> */}
+        <body className={inter.className}>
+          <NavigationBar navData={navData[0]} />
+            {children}
+            <Footer />
+          </body>
+      {/* </Layout> */}
     </html>
   );
 }  

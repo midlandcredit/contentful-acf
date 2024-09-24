@@ -21,10 +21,10 @@ export default function NavigationBar({navData}) {
 
   
   return (
-    <div>
+    <div className='bg-morning-sky-blue'>
       <div className="flex flex-row justify-between items-center px-[1rem] py-10 ">
       <div className='invert min-w-24  max-w-32 md:max-w-40 h-auto'>
-      <img className='max-w-[94%]' src={navData.logo.url} alt={navData.title}  />
+      <img className='max-w-[94%]' src={navData.logo.url} alt={navData.title} />
       </div>
         <a href={navData.buttonUrl} className='text-[13px] border rounded-45px border-black px-[12px] py-[3px] h-fit' >{navData.buttonTitle}</a>
         <div className='flex flex-col justify-center ml-[10px]'>
@@ -33,6 +33,7 @@ export default function NavigationBar({navData}) {
         ))}
         </div>
         </div>
+        {/* this is the  Serviced By MCM at (800) 296-2657 div*/}
        <div className="hidden lg:block">{documentToReactComponents(navData.servicedBy.json, options)}</div> 
     </div>
   )

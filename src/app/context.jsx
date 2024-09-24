@@ -1,13 +1,23 @@
-'use client';
-import React, { createContext, useContext } from 'react';
 
-const AppContext = createContext();
+import React from 'react';
+import { getNavCollection } from "@/lib/api"
+import { draftMode } from "next/headers";
+import NavigationBar from './navigationBar';
+import Footer from './footer';
 
-export const AppProvider = ({ children, sharedData }) => {
+// const AppContext = createContext();
+
+export const Layout = async ({ children, sharedData }) => {
+  const { isEnabled } = draftMode();
+  const navData = await getNavCollection(isEnabled);
     return (
-      <AppContext.Provider value={sharedData}>
+      // <AppContext.Provider value={sharedData}>
+        <NavigationBar navData={navData[0]}>
         {children}
-      </AppContext.Provider>
+        <Footer />
+        </NavigationBar>
+        
+      // </AppContext.Provider>
     );
   };
   

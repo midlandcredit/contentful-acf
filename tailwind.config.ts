@@ -17,7 +17,8 @@ const config: Config = {
         '45px' : '45px'
       },
       colors: {
-        'morning-sky-blue' : '#DFE8F8' 
+        'morning-sky-blue' : '#DFE8F8',
+        'midnight-blue' : '#143B62'
       },
     },
   },

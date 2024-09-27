@@ -1,4 +1,6 @@
 /**
+ MAY HAVE TO CREATE DIFFERENT FILES TO SEPARATE FETCHING DATA FOR EACH CONTENT MODAL
+ * 
  in this file this is where we create all our API calls from GraphQL 
  */
 
@@ -52,6 +54,58 @@ const footerCollection = `
   }
 `
 
+const homePageCollection = `
+   number
+      title 
+      heroBanner {
+        ... on LandingPage {
+          title
+          buttonText
+          buttonUrl
+          footer
+          heroImage {
+            image {
+              url
+            title
+            }
+          }
+        }
+      }
+      text {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+              ... on PhoneNumber {
+                phoneNumber
+              }
+            }
+          }
+        }
+      }
+      buttonText
+      buttonUrl
+      attachmentsCollection {
+        items {
+          __typename
+          ... on CtaButtons {
+            title
+            buttonText
+            buttonUrl
+            phoneNumber {
+              phoneNumber
+            }
+            image {
+              url
+            }
+          }
+        }
+      }
+`
+
 // get requets, thinking of making this dynamic for all the get request... but the fields are different for each content type\
 //not sure what this slug is yet and how important it maye be: authorCollection(where: { slug_exists: true }, order: date_DESC, preview:
 export async function getNavCollection(isDraftMode: boolean): Promise<any[]> {
@@ -85,13 +139,29 @@ export async function getFooterCollection(isDraftMode: boolean): Promise<any[]> 
    }`,
    isDraftMode,
   );
-  console.log('entries for footer collection: ', entries)
+  // console.log('entries for footer collection: ', entries)
   return extractPostEntries(entries, 'footerCollection');
   }
 
+//this will query ONLY the Home Page Collection
+export async function getHomePageCollection(isDraftMode: boolean): Promise<any[]> {
+  const entries = await fetchGraphQL(
+   `query {
+     bodyCollection(preview: ${
+       isDraftMode ? "true" : "false"
+     }, limit: 1, where: {title: "Home Page"}) {
+       items {
+         ${homePageCollection}
+       }
+     }
+   }`,
+   isDraftMode,
+  );
+  // console.log('entries for home page collection: ', entries)
+  return extractPostEntries(entries, 'bodyCollection');
+  }
 
-
-
+  
 //not sure if I should make other functions that will also fetch content in contentful... 
 //need to figure out how im going to make this work as if there will be no devloper
 //but aslo this is only for the smaller websites

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 

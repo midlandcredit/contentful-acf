@@ -1,12 +1,12 @@
 'use client';
 import React from 'react'
+import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
-export default function HomeLayout({data}) {
-  console.log('THIS IS THE CTA BUTTONS: ', data.attachmentsCollection.items)
+export default function HomePageBody({data}) {
 
-  const Text = ({children}) => <p className='my-[15px] mx-[10px] text-midnight-blue'>{children}</p>
+  const Text = ({children}) => <p className='my-[15px] mx-[13px] text-midnight-blue'>{children}</p>
 
   const option = {
     // Add more custom renderers if needed
@@ -27,12 +27,12 @@ export default function HomeLayout({data}) {
 
 
   return (
-    <div className='border-2 border-black text-center text-[10px] '>
+    <div className='text-center text-[10px] '>
       {documentToReactComponents(data.text.json, option)}
-      <div className='flex flex-row flex-wrap justify-center w-[100%] m-[auto] gap-[10px]'>
+      <div className='flex flex-row flex-wrap justify-center w-[100%] m-[auto] my-[30px] gap-[10px]'>
         {data.attachmentsCollection.items.map((item, index) => {
           return (
-            <div key={index} className='flex flex-col flex-wrap justify-center items-center basis-[8.5rem] rounded-[10px] bg-[#DFE8F8] p-[11px] mx-[5px] my-[5px] text-midnight-blue'>
+            <div key={index} className='flex flex-col flex-wrap justify-center items-center basis-[8.5rem] rounded-[10px] bg-[#DFE8F8] p-[11px] py-[15px] mx-[5px] my-[5px] text-midnight-blue'>
               <div className='w-[30%] m-[5px]'>
               <img src={item.image.url} />
               </div>

@@ -23,7 +23,6 @@ Readonly<{
 }>) 
 {
   const { isEnabled } = draftMode();
-  const footerData = await getFooterCollection(isEnabled);
   const navData = await getNavCollection(isEnabled);
   
   return (

@@ -4,6 +4,8 @@
  in this file this is where we create all our API calls from GraphQL 
  */
 
+import { cache } from "react";
+
  //this is all of the fields in the content in each of the content model
  const navigateCollection = `
   buttonTitle
@@ -105,6 +107,29 @@ const homePageCollection = `
         }
       }
 `
+const homeLandingPageCollection = `
+  title
+      text {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+            } 
+          }
+        }
+      }
+      slug
+      buttonText
+      buttonUrl
+      heroImage {
+        image {
+          url
+        }
+      }
+`
 
 // get requets, thinking of making this dynamic for all the get request... but the fields are different for each content type\
 //not sure what this slug is yet and how important it maye be: authorCollection(where: { slug_exists: true }, order: date_DESC, preview:
@@ -131,15 +156,16 @@ export async function getFooterCollection(isDraftMode: boolean): Promise<any[]> 
    `query {
      footerCollection(preview: ${
        isDraftMode ? "true" : "false"
-     }, limit: 5) {
+     }, limit: 5, order: number_ASC) {
        items {
          ${footerCollection}
        }
      }
    }`,
    isDraftMode,
+   
   );
-  // console.log('entries for footer collection: ', entries)
+  // console.log('entries for FOOTER COLLECTION: ', entries)
   return extractPostEntries(entries, 'footerCollection');
   }
 
@@ -159,7 +185,25 @@ export async function getHomePageCollection(isDraftMode: boolean): Promise<any[]
   );
   // console.log('entries for home page collection: ', entries)
   return extractPostEntries(entries, 'bodyCollection');
-  }
+  };
+
+  //this will query ONLY the Home Page Collection
+export async function getHomeLandingPageCollection(isDraftMode: boolean): Promise<any[]> {
+  const entries = await fetchGraphQL(
+   `query {
+     landingPageCollection(preview: ${
+       isDraftMode ? "true" : "false"
+     }, limit: 1, where: {title: "Home Page"}) {
+       items {
+         ${homeLandingPageCollection}
+       }
+     }
+   }`,
+   isDraftMode,
+  );
+  // console.log('entries for home page collection: ', entries)
+  return extractPostEntries(entries, 'landingPageCollection');
+  };
 
   
 //not sure if I should make other functions that will also fetch content in contentful... 
@@ -172,7 +216,7 @@ return fetchResponse?.data?.[collection]?.items;
 };
 
 
-//this is doing a post request, still now sure if we need this.. for the smaller websites
+
 async function fetchGraphQL(query: string, preview = false): Promise<any> {
 return fetch(
  `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
@@ -185,6 +229,7 @@ return fetch(
          ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
          : process.env.CONTENTFUL_ACCESS_TOKEN
      }`,
+     'Cache-Control' : 'no-cache'
    },
    body: JSON.stringify({ query }),
    next: { tags: ["posts"] },

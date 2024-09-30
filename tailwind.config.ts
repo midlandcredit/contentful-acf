@@ -20,6 +20,9 @@ const config: Config = {
         'morning-sky-blue' : '#DFE8F8',
         'midnight-blue' : '#143B62'
       },
+      fontSize : {
+        'footer-standard': '12px'
+      }
     },
   },
   plugins: [],

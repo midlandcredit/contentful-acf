@@ -27,10 +27,12 @@ export default function NavigationBar({navData}) {
       <div className='invert min-w-24  max-w-32 md:max-w-40 h-auto'>
       <img className='max-w-[94%]' src={navData.logo.url} alt={navData.title} />
       </div>
-        <a href={navData.buttonUrl} className='text-[13px] border rounded-45px border-black px-[12px] py-[3px] h-fit' >{navData.buttonTitle}</a>
+        <div className='text-[13px] text-[#143B62] border rounded-45px border-[#143B62] px-[12px] py-[3px] h-fit' >
+        <a href={navData.buttonUrl}>{navData.buttonTitle}</a>
+        </div>
         <div className='flex flex-col justify-center ml-[10px]'>
         {[...Array(3)].map((_, index) => (
-          <div key={index} className='h-0.5 bg-black w-[22px] my-1'></div>
+          <div key={index} className='h-0.5 bg-[#143B62] w-[22px] my-1'></div>
         ))}
         </div>
         </div>

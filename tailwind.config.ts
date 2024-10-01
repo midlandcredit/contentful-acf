@@ -5,7 +5,10 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/**/*.{js,jsx,ts,tsx}',
+    
   ],
+  
   theme: {
     extend: {
       backgroundImage: {
@@ -21,7 +24,7 @@ const config: Config = {
         'midnight-blue' : '#143B62'
       },
       fontSize : {
-        'footer-standard': '12px'
+        'standard': '12px'
       }
     },
   },

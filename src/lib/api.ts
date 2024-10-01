@@ -124,10 +124,12 @@ const homeLandingPageCollection = `
       slug
       buttonText
       buttonUrl
-      heroImage {
-        image {
+      footer
+      heroImageDesktop {
           url
-        }
+      }
+      heroImageMobile {
+          url
       }
 `
 
@@ -193,7 +195,7 @@ export async function getHomeLandingPageCollection(isDraftMode: boolean): Promis
    `query {
      landingPageCollection(preview: ${
        isDraftMode ? "true" : "false"
-     }, limit: 1, where: {title: "Home Page"}) {
+     }, limit: 1) {
        items {
          ${homeLandingPageCollection}
        }

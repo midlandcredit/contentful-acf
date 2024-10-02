@@ -1,10 +1,25 @@
-import React from 'react';
+'use client';
+import React, { useLayoutEffect, useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 
 export default function NavigationBar({navData}) {
+  const pathname = usePathname();
+  const [navBg, setNavBg] = useState(pathname === '/' ? 'bg-morning-sky-blue' : 'bg-white')
+
+  useLayoutEffect(() => {
+    if (pathname === '/') {
+      setNavBg('bg-morning-sky-blue')
+    } else {
+      setNavBg('bg-white')
+    }
+
+  }, [pathname]);
+
+
 
   const options = {
     renderNode: {
@@ -22,7 +37,7 @@ export default function NavigationBar({navData}) {
 
   
   return (
-    <div className='bg-morning-sky-blue'>
+    <div className={`${navBg}`}>
       <div className="flex flex-row justify-between items-center px-[1rem] py-10 ">
       <div className='invert min-w-24  max-w-32 md:max-w-40 h-auto'>
       <img className='max-w-[94%]' src={navData.logo.url} alt={navData.title} />

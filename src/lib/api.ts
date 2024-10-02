@@ -4,8 +4,6 @@
  in this file this is where we create all our API calls from GraphQL 
  */
 
-import { cache } from "react";
-
  //this is all of the fields in the content in each of the content model
  const navigateCollection = `
   buttonTitle
@@ -31,8 +29,7 @@ import { cache } from "react";
       }
     }
   }
-`;
-
+`
 const footerCollection = `
   number
   title
@@ -55,7 +52,6 @@ const footerCollection = `
     url
   }
 `
-
 const homePageCollection = `
    number
       title 
@@ -132,6 +128,78 @@ const homeLandingPageCollection = `
           url
       }
 `
+const aboutUsCard = `
+  title
+  subheader
+  buttonText
+  buttonUrl
+  footer
+  align
+  content {
+    json
+    links {
+      entries {
+        inline {
+          sys {
+            id
+          }
+          ... on PhoneNumber {
+            phoneNumber
+          }
+        }
+      }
+    }
+  }
+`
+const faqsCards = `
+  title
+  subheader
+  number
+  buttonText
+  buttonUrl
+  footer
+  align
+  content {
+    json
+    links {
+      entries {
+        inline {
+          sys {
+            id
+          }
+          ... on PhoneNumber {
+            phoneNumber
+          }
+        }
+      }
+    }
+  }
+`
+const faqsSectionCollection = `
+  title
+  questionsCollection(limit: 5) {
+    items {
+      question
+      answer {
+        json
+        links {
+          entries {
+            inline {
+              sys {
+                id
+              }
+              ... on PhoneNumber {
+                phoneNumber
+              }
+            }
+          }
+        }
+      }
+      buttonText
+      buttonUrl
+    }
+  }
+`
 
 // get requets, thinking of making this dynamic for all the get request... but the fields are different for each content type\
 //not sure what this slug is yet and how important it maye be: authorCollection(where: { slug_exists: true }, order: date_DESC, preview:
@@ -189,7 +257,47 @@ export async function getHomePageCollection(isDraftMode: boolean): Promise<any[]
   return extractPostEntries(entries, 'bodyCollection');
   };
 
+
+//this will query ONLY the Home Page Collection
+export async function getFaqsSectionCollection(isDraftMode: boolean): Promise<any[]> {
+  const entries = await fetchGraphQL(
+   `query {
+     faqsSectionCollection(preview: ${
+       isDraftMode ? "true" : "false"
+     }, limit: 2, order: order_ASC) {
+       items {
+         ${faqsSectionCollection}
+       }
+     }
+   }`,
+   isDraftMode,
+  );
+  // console.log('entries for home page collection: ', entries)
+  return extractPostEntries(entries, 'faqsSectionCollection');
+  };
+
   //this will query ONLY the Home Page Collection
+export async function getAboutUsCardCollection(isDraftMode: boolean, cardType: string, order: boolean): Promise<any[]> {
+  const item = cardType === 'About Us' ? aboutUsCard : faqsCards;
+  const orderClause = order ? "order: number_ASC" : "";
+  const entries = await fetchGraphQL(
+   `query {
+     cardCollection(preview: ${
+       isDraftMode ? "true" : "false"
+     }, limit: 2, where: {page: "${cardType}"}, ${orderClause}) {
+       items {
+         ${item}
+       }
+     }
+   }`,
+   isDraftMode,
+  );
+  // console.log('entries for about us card collection: ', entries)
+  return extractPostEntries(entries, 'cardCollection');
+  };
+
+  //this will ne query for ONLY the About Us Card in the cardCollection... not sure how I would do the entire
+  //collection and split it up.... 
 export async function getHomeLandingPageCollection(isDraftMode: boolean): Promise<any[]> {
   const entries = await fetchGraphQL(
    `query {

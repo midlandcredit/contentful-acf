@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function HomeLandingPage({data}) {
-  console.log('making sure that we get the url: ', data.heroImageMobile.url)
+  // console.log('making sure that we get the url: ', data.heroImageMobile.url)
   
   return (
     <div className={`pt-[25px] pb-[70px] px-[30px] `}>

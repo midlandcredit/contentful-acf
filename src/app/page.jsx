@@ -8,8 +8,6 @@ export default async function Home() {
   const { isEnabled } = draftMode();
   const homePageData = await getHomePageCollection(isEnabled);
   const homeLandingPage = await getHomeLandingPageCollection(isEnabled);
-  console.log('what is homeLandingPage: ', homeLandingPage[0])
-//bg-morning-sky-blue
 
   return (
     <main className="">

@@ -8,6 +8,8 @@
  const navigateCollection = `
   buttonTitle
   buttonUrl
+  buttonTitle2
+  buttontUrl2
   logo {
     title
     url

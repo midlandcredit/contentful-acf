@@ -21,7 +21,9 @@ const config: Config = {
       },
       colors: {
         'morning-sky-blue' : '#DFE8F8',
-        'midnight-blue' : '#143B62'
+        'midnight-blue' : '#143B62',
+        'muted-medium-blue' : '#7991AD',
+        'steel-blue' : '#7991AD'
       },
       fontSize : {
         'standard': '12px'

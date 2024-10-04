@@ -6,15 +6,12 @@ import FaqCard from './faqCard';
 
 export default async function Faq() {
     const { isEnabled } = draftMode();
-    let aboutUsData = await getAboutUsCardCollection(isEnabled, 'FAQ', true);
-    // console.log('are we getting this.......: ', aboutUsData[0])
-    
+    const aboutUsData = await getAboutUsCardCollection(isEnabled, 'FAQ', true);
     const faqsSection = await getFaqsSectionCollection(isEnabled);
-    // console.log('are we getting this: ', aboutUsData)
 
 
   return (
-    <div>
+    <div className='mx-[20px]'>
       <FaqCard data={aboutUsData[0]} />
       {faqsSection.map((item, index) => (
           <FaqLayout key={index} data={item} />

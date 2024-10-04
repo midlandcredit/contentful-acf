@@ -23,7 +23,7 @@ export default function FooterLayout({data}) {
           
           //if rmai, create 
           if (data.number === 1) {
-            return <div className=' mx-[10px] px-[10px] text-standard text-midnight-blue'>{children}</div>
+            return <div className='mx-[10px] px-[10px] text-standard text-midnight-blue'>{children}</div>
           } else if (data.number === 2) {
             // console.log('what is paragraph children in footer: ', children)
             if (children[0].includes('Call MCM')) {

@@ -9,7 +9,7 @@ export default function FooterLayout({data}) {
   // console.log('DATA FOR FOOTER: ', data)
 
     const Text = ({ children }) => (
-      <p className={`leading-[normal] m-[10px] text-standard ${data.number === 3 ? 'text-[#FFFFFF]' : null} whitespace-pre-line`}>
+      <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line`}>
         {children}
       </p>);
     
@@ -24,28 +24,26 @@ export default function FooterLayout({data}) {
           return <span>{phoneNumber}</span>;
         },
         [BLOCKS.PARAGRAPH]: (node, children) => {
-          // console.log('what is children.........: ', children)
+          // console.log('what is NODE.........: ', node)
           //if rmai, create 
           if (data.number === 1) {
-            return <div className='leading-[normal] mx-[10px] px-[10px] text-standard text-midnight-blue'>{children}</div>
+            return <div className='leading-[normal] mx-[10px] px-[10px] text-clamp-footer text-midnight-blue'>{children}</div>
           } else if (data.number === 2) {
             // console.log('what is paragraph children in footer: ', children)
             if (children[0].includes('Call MCM')) {
               return (
-                <div className='flex justify-between'>
-                <Text>
-                  {children}
-                </Text>
-                  <div className={`w-[70px] my-[15px] relative bottom-[30px] right-[30px]`}><img src={data.image.url} /></div>
+                <div className='flex justify-between tablet:flex-row-reverse tablet:h-[65px] tablet:relative tablet:bottom-[175px]'>
+                <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line tablet:relative tablet:bottom-[35px]`}>{children}</p>
+                  <div className={`w-[70px] my-[15px] relative bottom-[30px] right-[10%] tablet:right-[18%] tablet:bottom-[0px] tablet:right-[189px] tablet:m-0 tablet:w-[15%]`}><img src={data.image.url} /></div>
                 </div>
               )
             } else if (children[0].includes('Midland Credit Management adheres')) {
-                return <p className={`leading-[normal] m-[10px] text-standard whitespace-pre-line w-[80%]`}>{children}</p>
+                return <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line w-[80%] tablet:w-[42%] `}>{children}</p>
             } else {
               return <Text>{children}</Text>
             }
           } else if (data.number === 3) {
-            return <Text>{children}</Text>
+            return <p className={`text-center leading-[normal] m-[10px] text-[#FFFFFF] ${children[0].includes('Please understand') ? 'text-clamp-footer-header' : 'text-clamp-footer-subheader'} whitespace-pre-line`}>{children}</p>
           }
         },
       },
@@ -53,13 +51,15 @@ export default function FooterLayout({data}) {
   };
 
   return (
-    <div className={`font-semibold p-[23px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'text-left bg-[#DFE8F8] pb-[10px]' : 'text-center items-center bg-alice-blue'}`}>
-    {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue font-semibold'>{data.title}</h3>}
-       {documentToReactComponents(data.text.json, option)}
-       {data.number === 1 && 
-       <div className={`w-[20%] my-[15px]`}>
-        {data.image && <img src={data.image.url} />} 
-       </div>}
+    <div className={`font-semibold p-[23px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'text-left bg-[#DFE8F8] pb-[10px]' : data.number === 1 ?  'text-center items-center bg-alice-blue' : null}`}>
+      <div className='tablet:w-[70%] tablet:m-auto tablet:pt-[35px]'>
+        {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue font-semibold text-clamp-footer-title'>{data.title}</h3>}
+          {documentToReactComponents(data.text.json, option)}
+          {data.number === 1 && 
+          <div className={`w-[20%] m-auto mt-[20px]  my-[15px]`}>
+            {data.image && <img src={data.image.url} />} 
+        </div>}
+      </div>
     </div>
   )
 }

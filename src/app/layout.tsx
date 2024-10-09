@@ -28,7 +28,7 @@ Readonly<{
   return (
     <html lang="en">
       {/* <Layout sharedData={footerData}> */}
-        <body  className={`${mulish.className} max-w-max-width m-[auto]`}>
+        <body  className={`${mulish.className} max-w-max-width m-[auto] bg-alice-blue`}>
           <NavigationBar navData={navData[0]} />
             {children}
             <Footer />

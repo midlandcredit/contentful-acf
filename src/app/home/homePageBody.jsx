@@ -29,7 +29,7 @@ export default function HomePageBody({data}) {
   return (
     <div className='text-center text-clamp-home-body'>
       {documentToReactComponents(data.text.json, option)}
-      <div className='flex flex-row flex-wrap justify-center w-[100%] m-[auto] my-[30px] gap-[10px]'>
+      <div className='flex flex-row flex-wrap justify-center w-[100%] m-[auto] py-[30px] gap-[10px]'>
         {data.attachmentsCollection.items.map((item, index) => {
           return (
             <div key={index} className='flex flex-col flex-wrap justify-center items-center basis-[8.5rem] tablet:basis-[12rem] laptop:basis-[18rem] laptop:h-[290px] rounded-[10px] bg-[#DFE8F8] p-[13px] py-[15px] px-[20px] mx-[5px] my-[5px] text-midnight-blue font-semibold'>
@@ -38,7 +38,7 @@ export default function HomePageBody({data}) {
               </div>
               <p className='text-clamp-title-cta'>{item.title}</p>
               {item.phoneNumber && <div>{item.phoneNumber.phoneNumber}</div>}
-              <div className='rounded-[50px] bg-[#FFFFFF] px-[15px] py-[5px]  mt-[10px] font-bold text-[12px]'>
+              <div className={`${index === 0 ? 'tablet:relative tablet:top-[10px] laptop:top-[14px]' : null} rounded-[50px] bg-[#FFFFFF] px-[15px] tablet:w-[90%] py-[5px]  mt-[10px] font-bold text-clamp-footer`}>
                 <a className='whitespace-nowrap' href={item.buttonUrl}>
                   {item.buttonText}
                 </a>

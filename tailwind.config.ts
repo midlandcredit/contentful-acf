@@ -42,17 +42,27 @@ const config: Config = {
         '3.1vw': '3.1vw',
         '2.65vw': '2.65vw',
         'clamp-title' : 'clamp(20px, 2.65vw, 40px)',
+        'clamp-nav-button' : 'clamp(12px, 2vw, 24px)',
         'clamp-button' : 'clamp(18px, 2vw, 24px)',
         'clamp-footer' : 'clamp(12px, 2vw, 24px)',
         'clamp-home-body' : 'clamp(10px, 1.7vw, 18px)',
+        'clamp-body' : 'clamp(12px, 1.5vw, 18px)',
         'clamp-title-cta' : 'clamp(10px, 1.7vw, 22px)',
-        'clamp-cta' : 'clamp(8.5rem, 10rem, 18rem)'
+        'clamp-faq-title' : 'clamp(24px, 3vw, 40px)',
+        'clamp-faq-card-title' : 'clamp(20px, 3vw, 40px)',
+        'clamp-faq-subheader' : 'clamp(20px, 3vw, 36px)',
+        'clamp-faq-button' : 'clamp(14px, 2vw, 24px)',
+        'clamp-faq-footer' : 'clamp(14px, 2vw, 20px)',
+        'clamp-cta' : 'clamp(8.5rem, 10rem, 18rem)',
+        'clamp-footer-title' : 'clamp(16px, 2.5vw, 40px)',
+        'clamp-footer-header': 'clamp(12px, 2vw, 16px)',
+        'clamp-footer-subheader': 'clamp(12px, 2vw, 20px)'
       },
       width: {
         'clamp-width-button' : 'clamp(233px, 32vw , 354px)',
       },
       maxWidth: {
-        'max-width' : '1440px'
+        'max-width' : '1650px'
       }
     },
   },

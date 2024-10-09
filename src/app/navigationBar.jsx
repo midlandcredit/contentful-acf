@@ -71,7 +71,7 @@ export default function NavigationBar({navData}) {
 
   
   return (
-    <div className={`${navBg} px-[3rem] py-10 m-autos`}>
+    <div className={`${navBg} px-[1rem] tablet:px-[3rem] py-10 m-autos`}>
       <div className="flex flex-row justify-between items-center">
         <div className='invert min-w-24 max-w-32 md:max-w-40 h-auto laptop:max-w-fit laptop:w-[190px]'>
         <Link href={'/'} onClick={() => navBarTextColor('home', true)}>
@@ -79,7 +79,7 @@ export default function NavigationBar({navData}) {
         </Link>
         </div>
         <div className='flex flex-row justify-between w-[100%] tablet:flex-row-reverse'>
-        <div className='text-[13px] laptop:text-[24px] tablet:text-[18px] text-midnight-blue tablet:text-[#FFFFFF] border rounded-45px border-midnight-blue tablet:bg-midnight-blue  px-[15px] laptop:px-[40px] py-[5px] h-fit m-[auto] tablet:m-0'>
+        <div className='text-clamp-nav-button text-midnight-blue tablet:text-[#FFFFFF] border rounded-45px border-midnight-blue tablet:bg-midnight-blue  px-[15px] laptop:px-[40px] py-[5px] h-fit m-[auto] tablet:m-0'>
             <a href={navData.buttonUrl}>{navData.buttonTitle}</a>
           </div>
           {isMobile ?  (<div onClick={toggleNavBar} className='flex flex-col justify-center ml-[auto] '>

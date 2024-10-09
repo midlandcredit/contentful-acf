@@ -8,7 +8,11 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 export default function FooterLayout({data}) {
   // console.log('DATA FOR FOOTER: ', data)
 
-  const Text = ({children}) => <p className={`m-[10px] text-standard ${data.number === 3 ? 'text-[#FFFFFF]' : null}`}>{children}</p>
+    const Text = ({ children }) => (
+      <p className={`leading-[normal] m-[10px] text-standard ${data.number === 3 ? 'text-[#FFFFFF]' : null} whitespace-pre-line`}>
+        {children}
+      </p>);
+    
 
   const option = {
     // Add more custom renderers if needed
@@ -20,21 +24,23 @@ export default function FooterLayout({data}) {
           return <span>{phoneNumber}</span>;
         },
         [BLOCKS.PARAGRAPH]: (node, children) => {
-          
+          // console.log('what is children.........: ', children)
           //if rmai, create 
           if (data.number === 1) {
-            return <div className='mx-[10px] px-[10px] text-standard text-midnight-blue'>{children}</div>
+            return <div className='leading-[normal] mx-[10px] px-[10px] text-standard text-midnight-blue'>{children}</div>
           } else if (data.number === 2) {
             // console.log('what is paragraph children in footer: ', children)
             if (children[0].includes('Call MCM')) {
               return (
-                <div className='flex'>
+                <div className='flex justify-between'>
                 <Text>
                   {children}
                 </Text>
-                  <div className={`w-[50%] my-[15px]`}><img src={data.image.url} /></div>
+                  <div className={`w-[70px] my-[15px] relative bottom-[30px] right-[30px]`}><img src={data.image.url} /></div>
                 </div>
               )
+            } else if (children[0].includes('Midland Credit Management adheres')) {
+                return <p className={`leading-[normal] m-[10px] text-standard whitespace-pre-line w-[80%]`}>{children}</p>
             } else {
               return <Text>{children}</Text>
             }
@@ -47,8 +53,8 @@ export default function FooterLayout({data}) {
   };
 
   return (
-    <div className={`font-semibold p-[15px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'text-left bg-[#DFE8F8]' : 'text-center items-center'}`}>
-    {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue'>{data.title}</h3>}
+    <div className={`font-semibold p-[23px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'text-left bg-[#DFE8F8] pb-[10px]' : 'text-center items-center bg-alice-blue'}`}>
+    {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue font-semibold'>{data.title}</h3>}
        {documentToReactComponents(data.text.json, option)}
        {data.number === 1 && 
        <div className={`w-[20%] my-[15px]`}>

@@ -4,6 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
 export default function FaqLayout({ data }) {
+  console.log('what is data...: ', data)
   const [openItems, setOpenItems] = useState({});
 
   const toggleDrawer = (index) => {
@@ -20,7 +21,7 @@ export default function FaqLayout({ data }) {
   );
 
   const renderOptions = (faqData) => {
-    console.log('what is FAQ Data: ', faqData);
+    // console.log('what is FAQ Data: ', faqData);
 
     return {
       renderNode: {
@@ -34,10 +35,17 @@ export default function FaqLayout({ data }) {
                 (entry) => entry.sys.id === id
               ).phoneNumber
             : 'Phone number not found';
-          return <span className="underline">{phoneNumber} </span>;
+          return <span className="underline">{phoneNumber}</span>;
         },
         [INLINES.HYPERLINK]: (node, children) => {
-          return <span>{children}</span>;
+          return (
+            <a
+              href={node.data.uri}
+              className="underline"
+            >
+              {children}
+            </a>
+          );
         },
         [BLOCKS.PARAGRAPH]: (node, children) => {
           return <Text>{children}</Text>;
@@ -52,9 +60,9 @@ export default function FaqLayout({ data }) {
         {data.title}
       </p>
       {data.questionsCollection.items.map((item, index) => (
-        <div key={index} className=" border border-[#DFE8F8] px-[10px] pt-[20px]">
-          <div className="text-[20px] text-muted-medium-blue font-bold mb-[30px] flex">
-            <p className="pr-[20px]">{item.question}</p>
+        <div key={index} className=" border border-[#DFE8F8] px-[10px] pt-[13px] leading-[normal]">
+          <div className="text-[20px] text-muted-medium-blue font-bold mb-[20px] flex">
+            <p className={`${data.order === '1' ? 'pr-[10px]' : 'pr-[0px]' }`}>{item.question}</p>
             <div onClick={() => toggleDrawer(index)}>
               {openItems[index] ? (
                 <svg

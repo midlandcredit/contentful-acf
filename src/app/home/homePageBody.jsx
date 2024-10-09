@@ -6,7 +6,7 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
 export default function HomePageBody({data}) {
 
-  const Text = ({children}) => <p className='my-[15px] mx-[13px] text-midnight-blue'>{children}</p>
+  const Text = ({children}) => <p className='leading-[normal] my-[15px] mx-[18px] tablet:m-auto tablet:my-[30px] tablet:w-[75%] tablet:px-[40px] text-midnight-blue'>{children}</p>
 
   const option = {
     // Add more custom renderers if needed
@@ -16,7 +16,7 @@ export default function HomePageBody({data}) {
           const { id } = node.data.target.sys;
           const entry = data.text.links.entries.inline.some(entry => entry.sys.id === id);
           const phoneNumber = entry ? data.text.links.entries.inline.find(entry => entry.sys.id === id).phoneNumber : 'Phone number not found';
-          return <span> {phoneNumber}</span>;
+          return <span className='underline'> {phoneNumber}</span>;
         },
         [BLOCKS.PARAGRAPH]: (node, children) => {
           // console.log('what is children: ', children)
@@ -27,16 +27,16 @@ export default function HomePageBody({data}) {
 
 
   return (
-    <div className='text-center text-[10px] '>
+    <div className='text-center text-clamp-home-body'>
       {documentToReactComponents(data.text.json, option)}
       <div className='flex flex-row flex-wrap justify-center w-[100%] m-[auto] my-[30px] gap-[10px]'>
         {data.attachmentsCollection.items.map((item, index) => {
           return (
-            <div key={index} className='flex flex-col flex-wrap justify-center items-center basis-[8.5rem] rounded-[10px] bg-[#DFE8F8] p-[11px] py-[15px] mx-[5px] my-[5px] text-midnight-blue'>
-              <div className='w-[30%] m-[5px]'>
+            <div key={index} className='flex flex-col flex-wrap justify-center items-center basis-[8.5rem] tablet:basis-[12rem] laptop:basis-[18rem] laptop:h-[290px] rounded-[10px] bg-[#DFE8F8] p-[13px] py-[15px] px-[20px] mx-[5px] my-[5px] text-midnight-blue font-semibold'>
+              <div className='w-[30%] m-[5px] laptop:mb-[30px]'>
               <img src={item.image.url} />
               </div>
-              <p>{item.title}</p>
+              <p className='text-clamp-title-cta'>{item.title}</p>
               {item.phoneNumber && <div>{item.phoneNumber.phoneNumber}</div>}
               <div className='rounded-[50px] bg-[#FFFFFF] px-[15px] py-[5px]  mt-[10px] font-bold text-[12px]'>
                 <a className='whitespace-nowrap' href={item.buttonUrl}>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "./globals.css";
 import { Layout } from './context';
 import { getFooterCollection } from "@/lib/api";
@@ -8,7 +8,7 @@ import { draftMode } from "next/headers";
 import NavigationBar from "./navigationBar";
 import Footer from "./footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const mulish = Mulish({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Atlantic Credit & Finance",
@@ -28,7 +28,7 @@ Readonly<{
   return (
     <html lang="en">
       {/* <Layout sharedData={footerData}> */}
-        <body className={inter.className}>
+        <body  className={`${mulish.className} max-w-max-width m-[auto]`}>
           <NavigationBar navData={navData[0]} />
             {children}
             <Footer />

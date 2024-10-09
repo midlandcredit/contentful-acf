@@ -5,7 +5,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 export default function AboutUsLayout({data}) {
 
-    const Text = ({children}) => <p className={`m-[10px] text-standard`}>{children}</p>
+    const Text = ({children}) => <p className={`m-[10px] mb-[20px] text-standard`}>{children}</p>
 
   const options = {
     renderNode: {
@@ -26,8 +26,8 @@ export default function AboutUsLayout({data}) {
   }
 
   return (
-    <div className='bg-[#DFE8F8] rounded-[10px] mx-[20px] p-[25px]'>
-        <h1 className='text-center text-[20px] font-semibold'>{data.title}</h1>
+    <div className='bg-[#DFE8F8] rounded-[10px] mx-[20px] p-[18px]'>
+        <h1 className='text-center text-[20px] font-semibold my-[15px]'>{data.title}</h1>
         {documentToReactComponents(data.content.json, options)}
     </div>
   )

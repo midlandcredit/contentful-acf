@@ -179,6 +179,7 @@ const faqsCards = `
 `
 const faqsSectionCollection = `
   title
+  order
   questionsCollection(limit: 5) {
     items {
       question
@@ -341,7 +342,7 @@ return fetch(
          ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
          : process.env.CONTENTFUL_ACCESS_TOKEN
      }`,
-     'Cache-Control' : 'no-cache'
+     
    },
    body: JSON.stringify({ query }),
    next: { tags: ["posts"] },

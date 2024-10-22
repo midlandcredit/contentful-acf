@@ -314,7 +314,7 @@ export async function getHomeLandingPageCollection(isDraftMode: boolean): Promis
    }`,
    isDraftMode,
   );
-  // console.log('entries for home page collection: ', entries)
+  console.log('entries for home page collection: ', entries)
   return extractPostEntries(entries, 'landingPageCollection');
   };
 

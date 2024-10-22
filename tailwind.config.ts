@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     screens: {
       'tablet' : '615px',
-      'laptop' : '1024px'
+      'laptop' : '1024px',
     },
     backgroundSize: {
       '55%' : '55%'
@@ -53,16 +53,24 @@ const config: Config = {
         'clamp-faq-subheader' : 'clamp(20px, 3vw, 36px)',
         'clamp-faq-button' : 'clamp(14px, 2vw, 24px)',
         'clamp-faq-footer' : 'clamp(14px, 2vw, 20px)',
+        'clamp-faq-question' : 'clamp(20px, 2.8vw, 32px)',
+        'clamp-faq-answer' : 'clamp(16px, 2vw, 20px)',
         'clamp-cta' : 'clamp(8.5rem, 10rem, 18rem)',
         'clamp-footer-title' : 'clamp(16px, 2.5vw, 40px)',
         'clamp-footer-header': 'clamp(12px, 2vw, 16px)',
-        'clamp-footer-subheader': 'clamp(12px, 2vw, 20px)'
+        'clamp-footer-subheader': 'clamp(12px, 2vw, 20px)',
+        
       },
       width: {
         'clamp-width-button' : 'clamp(233px, 32vw , 354px)',
+        'clamp-faq-answer-button' : 'clamp(240px, 22vw, 310px)'
       },
       maxWidth: {
-        'max-width' : '1650px'
+        'max-width' : '1650px',
+        'banner-max' : '1248px'
+      },
+      inset: {
+        'bottom-clamp-cbor' : 'clamp(22px, 6vw, 64px)'
       }
     },
   },

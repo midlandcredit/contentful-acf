@@ -11,7 +11,7 @@ export default async function Faq() {
 
 
   return (
-    <div className='mx-[20px]'>
+    <div className='laptop:m-auto mx-[20px] max-w-[1250px] '>
       <FaqCard data={aboutUsData[0]} />
       {faqsSection.map((item, index) => (
           <FaqLayout key={index} data={item} />

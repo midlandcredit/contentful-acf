@@ -2,7 +2,7 @@
 import React from 'react';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-
+//this a new comment to see if this works
 export default function AboutUsLayout({data}) {
 
     const Text = ({children}) => <p className={`m-[10px] mb-[20px] text-clamp-body leading-[normal]`}>{children}</p>

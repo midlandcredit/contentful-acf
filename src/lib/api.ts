@@ -55,7 +55,7 @@ const footerCollection = `
   }
 `
 const homePageCollection = `
-   number
+  number
       title 
       heroBanner {
         ... on LandingPage {
@@ -63,14 +63,15 @@ const homePageCollection = `
           buttonText
           buttonUrl
           footer
-          heroImage {
-            image {
-              url
-            title
+          heroImageMobile {
+            url
             }
+          heroImageDesktop {
+            url
           }
         }
       }
+      
       text {
         json
         links {
@@ -106,29 +107,29 @@ const homePageCollection = `
       }
 `
 const homeLandingPageCollection = `
-  title
-      text {
-        json
-        links {
-          entries {
-            inline {
-              sys {
-                id
-              }
-            } 
+ title
+  text {
+    json
+    links {
+      entries {
+        inline {
+          sys {
+            id
           }
-        }
+        } 
       }
-      slug
-      buttonText
-      buttonUrl
-      footer
-      heroImageDesktop {
-          url
-      }
-      heroImageMobile {
-          url
-      }
+    }
+  }
+  slug
+  buttonText
+  buttonUrl
+  footer
+  heroImageDesktop {
+    url
+  }
+  heroImageMobile {
+      url
+  }
 `
 const aboutUsCard = `
   title
@@ -256,7 +257,7 @@ export async function getHomePageCollection(isDraftMode: boolean): Promise<any[]
    }`,
    isDraftMode,
   );
-  // console.log('entries for home page collection: ', entries)
+  // console.log('entries for home page collection: ', entries.data)
   return extractPostEntries(entries, 'bodyCollection');
   };
 
@@ -303,19 +304,19 @@ export async function getAboutUsCardCollection(isDraftMode: boolean, cardType: s
   //collection and split it up.... 
 export async function getHomeLandingPageCollection(isDraftMode: boolean): Promise<any[]> {
   const entries = await fetchGraphQL(
-   `query {
-     landingPageCollection(preview: ${
-       isDraftMode ? "true" : "false"
-     }, limit: 1) {
-       items {
-         ${homeLandingPageCollection}
-       }
-     }
-   }`,
-   isDraftMode,
-  );
-  console.log('entries for home page collection: ', entries)
-  return extractPostEntries(entries, 'landingPageCollection');
+    `query {
+      landingPageCollection(preview: ${
+        isDraftMode ? "true" : "false"
+      }, limit: 1) {
+        items {
+          ${homeLandingPageCollection}
+        }
+      }
+    }`,
+    isDraftMode,
+   );
+  //  console.log('entries for home page collectionNNNNNNN: ', entries.data.landingPageCollection)
+   return extractPostEntries(entries, 'landingPageCollection');
   };
 
   
@@ -325,6 +326,7 @@ export async function getHomeLandingPageCollection(isDraftMode: boolean): Promis
 
 //this function extracts the collection... okay
 function extractPostEntries(fetchResponse: any, collection: string): any[] {
+  // console.log('this in the EXRACT FUNCTION: ', fetchResponse?.data?.[collection]?.items)
 return fetchResponse?.data?.[collection]?.items;
 };
 

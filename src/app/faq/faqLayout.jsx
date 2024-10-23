@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
-import UseIsLargeScreen from '../hooks/useIsLargeScreen'
+// import UseIsLargeScreen from '../hooks/useIsLargeScreen'
 
 
 export default function FaqLayout({ data, key }) {

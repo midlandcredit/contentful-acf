@@ -3,7 +3,7 @@ const nextConfig = {
     output: 'export',
 };
 
-console.log('next debug is: ', process.env.NEXT_DEBUG);
+// console.log('next debug is: ', process.env.NEXT_DEBUG);
 
 export default nextConfig;
 

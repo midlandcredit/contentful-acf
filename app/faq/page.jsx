@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAboutUsCardCollection, getFaqsSectionCollection } from "@/lib/api"
+import { getAboutUsCardCollection, getFaqsSectionCollection } from "../../lib/api"
 import { draftMode } from "next/headers";
 import FaqLayout from './faqLayout';
 import FaqCard from './faqCard';

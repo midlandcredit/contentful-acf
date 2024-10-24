@@ -1,6 +1,6 @@
 import React from 'react';
 import AboutUsLayout from './aboutUsLayout';
-import { getAboutUsCardCollection } from "@/lib/api"
+import { getAboutUsCardCollection } from "../../lib/api"
 import { draftMode } from "next/headers";
 
 export default async function aboutUs() {

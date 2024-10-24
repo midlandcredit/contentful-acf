@@ -1,13 +1,12 @@
 // import type { Metadata } from "next";
 import { Mulish } from "next/font/google";
+import { Suspense } from "react";
+import Loading from './loading';
 import "./globals.css";
-import { Layout } from './context';
-import { getNavCollection, getHomePageCollection, getHomeLandingPageCollection, getFooterCollection } from "@/lib/api";
+import { getNavCollection, getHomePageCollection, getHomeLandingPageCollection, getFooterCollection } from "../lib/api";
 import { draftMode } from "next/headers";
-import NavigationBar from "./navigationBar";
-import Footer from "./footer";
-import FooterLayout from "./footer/footerLayout";
-import Home from "./home/page";
+import NavigationBar from "./components/navigationBar";
+import FooterLayout from "./components/footer/footerLayout";
 
 const mulish = Mulish({ subsets: ["latin"] });
 
@@ -18,25 +17,30 @@ export const Metadata = {
 
 
 export default async function RootLayout({children}) {
-  const { isEnabled } = draftMode();
-  const navData = await getNavCollection(isEnabled);
-  const footerData = await getFooterCollection(isEnabled);
-  const homePageData = await getHomePageCollection(isEnabled);
-  const homeLandingPage = await getHomeLandingPageCollection(isEnabled);
+  // console.log('im i able to see children', children) 
+  let navData = [];
+  let footerData = [];
+  try {
+    const { isEnabled } = await draftMode();
+     navData = await getNavCollection(isEnabled);
+     footerData = await getFooterCollection(isEnabled);
+
+  } catch(err) {
+    console.error('Error when feteching data: ', err)
+  }
   
   return (
     <html lang="en">
       <body  className={`${mulish.className} max-w-max-width m-[auto] bg-alice-blue`}>
-       <main>hello</main>
         <NavigationBar navData={navData[0]} />
-           <main>{children}</main>
-          {/*{footerData.map((item, index) => {
-          return (
-            <div key={index}> 
-              <FooterLayout data={item} />
-            </div>
-          ) 
-        })} */}
+        <main><Suspense fallback={<Loading />}>{children}</Suspense></main>
+        {footerData.map((item, index) => {
+        return (
+          <div key={index}> 
+            <FooterLayout data={item} />
+          </div>
+        ) 
+      })}
         </body>
     </html>
   );

@@ -63,12 +63,7 @@ const homePageCollection = `
           buttonText
           buttonUrl
           footer
-          heroImageMobile {
-            url
-            }
-          heroImageDesktop {
-            url
-          }
+          
         }
       }
       
@@ -124,12 +119,6 @@ const homeLandingPageCollection = `
   buttonText
   buttonUrl
   footer
-  heroImageDesktop {
-    url
-  }
-  heroImageMobile {
-      url
-  }
 `
 const aboutUsCard = `
   title

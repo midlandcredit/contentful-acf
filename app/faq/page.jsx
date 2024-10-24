@@ -5,7 +5,7 @@ import FaqLayout from './faqLayout';
 import FaqCard from './faqCard';
 
 export default async function Faq() {
-    const { isEnabled } = draftMode();
+    const { isEnabled } = await draftMode();
     const aboutUsData = await getAboutUsCardCollection(isEnabled, 'FAQ', true);
     const faqsSection = await getFaqsSectionCollection(isEnabled);
 

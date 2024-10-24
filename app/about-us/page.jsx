@@ -4,7 +4,7 @@ import { getAboutUsCardCollection } from "@/lib/api"
 import { draftMode } from "next/headers";
 
 export default async function aboutUs() {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
   const aboutUsData = await getAboutUsCardCollection(isEnabled, 'About Us');
 //   console.log('does this give me the about us data: ', aboutUsData)
   return (

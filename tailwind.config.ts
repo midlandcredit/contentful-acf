@@ -1,26 +1,29 @@
 import type { Config } from "tailwindcss";
+import squiggles from './public/squiggles.svg';
+import bannerImage from './public/banner-img.png'
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    './src/**/*.{js,jsx,ts,tsx}',
-    
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   
   theme: {
     screens: {
       'tablet' : '615px',
+      'large-tablet' : '616px',
       'laptop' : '1024px',
     },
     backgroundSize: {
       '55%' : '55%'
-    },
+    }, 
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'mobile-image': `url('./public/squiggles.svg')`,
+        'desktop-image': `url('./public/banner-img.png')`
         
       },
       backgroundPosition: {

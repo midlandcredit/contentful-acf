@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    distDir: 'out',
+    trailingSlash: true,
 };
 
 // console.log('next debug is: ', process.env.NEXT_DEBUG);

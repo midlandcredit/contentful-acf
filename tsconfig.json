@@ -29,15 +29,16 @@
     "target": "ES2017"
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/components/navigationBar.jsx",
+    "app/context.jsx",
     "app/index.jsx",
     "app/index.jsx",
     "app/layout.jsx",
-    "app/context.jsx"
+    "next-env.d.ts",
+    "out/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

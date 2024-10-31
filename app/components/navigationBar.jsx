@@ -3,16 +3,27 @@ import React, { useLayoutEffect, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 //use this for the the drawer for the nav bar className={`fixed top-0 left-0  h-[30%] bg-white shadow-lg transition-transform transform ${isOpen ? 'translate-y-0' : '-translate-y-full'}`}
 export default function NavigationBar({navData}) {
   const pathname = usePathname();
+  const router = useRouter();
   const [navBg, setNavBg] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [pageName, setPageName] = useState('home');
   const [isMobile, setIsMobile] = useState(null);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV == "production") {
+      if (pathname !== "/") {
+        router.push(pathname);
+        console.log('goes in here in production')
+      }
+    }
+  }, [])
 
   useLayoutEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 614px)');
@@ -88,8 +99,8 @@ export default function NavigationBar({navData}) {
             ))}
           </div>) :
           <div className='flex flex-row justify-center content-center flex-wrap text-center tablet:ml-[auto] tablet:mr-[30px] tablet:gap-[20px]'>                        
-            <Link className={`mx-[20px] text-[18px] laptop:text-[24px] text-midnight-blue ${pageName === 'about-us' ? 'underline-offset-2' : 'text-[#FFFFFF]' }`} onClick={() => navBarTextColor('about-us')} href={'./about-us'}>About</Link>
-            <Link className={`mx-[20px] text-[18px] laptop:text-[24px] text-midnight-blue ${pageName === 'faq' ? 'underline-offset-2' : 'text-[#FFFFFF]' }`} onClick={() => navBarTextColor('faq')} href={'./faq'}>FAQs</Link>
+            <Link className={`mx-[20px] text-[18px] laptop:text-[24px] text-midnight-blue ${pageName === 'about-us' ? 'underline-offset-2' : 'text-[#FFFFFF]' }`} onClick={() => navBarTextColor('about-us')} href={'/about-us'}>About</Link>
+            <Link className={`mx-[20px] text-[18px] laptop:text-[24px] text-midnight-blue ${pageName === 'faq' ? 'underline-offset-2' : 'text-[#FFFFFF]' }`} onClick={() => navBarTextColor('faq')} href={'/faq'}>FAQs</Link>
           </div>
           }
           </div>
@@ -104,8 +115,8 @@ export default function NavigationBar({navData}) {
           </div>
           <div className='flex flex-col justify-center content-center flex-wrap text-center'>
             <Link className={`${pageName === 'home' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('home')} href={'/'} >Home</Link>                        
-            <Link className={`${pageName === 'about-us' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('about-us')} href={'./about-us'}>About</Link>
-            <Link className={`${pageName === 'faq' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('faq')} href={'./faq'}>FAQs</Link>
+            <Link className={`${pageName === 'about-us' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('about-us')} href={'/about-us'}>About</Link>
+            <Link className={`${pageName === 'faq' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('faq')} href={'/faq'}>FAQs</Link>
             <hr />
             <p className='pt-[15px]'>
               <a href={navData.buttontUrl2}>

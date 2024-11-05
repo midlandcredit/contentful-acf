@@ -114,7 +114,7 @@ export default function NavigationBar({navData}) {
           <svg className="h-8 w-8 text-white"  width="24" height="24" viewBox="0 0 30 30" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" /></svg>
           </div>
           <div className='flex flex-col justify-center content-center flex-wrap text-center'>
-            <Link className={`${pageName === 'home' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('home')} href={'/'} >Home</Link>                        
+            <Link className={`${pageName === 'home' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('home')} href={'/'}>Home</Link>                        
             <Link className={`${pageName === 'about-us' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('about-us')} href={'/about-us'}>About</Link>
             <Link className={`${pageName === 'faq' ? 'text-steel-blue' : 'text-[#FFFFFF]' } pb-[15px]`} onClick={() => navBarTextColor('faq')} href={'/faq'}>FAQs</Link>
             <hr />

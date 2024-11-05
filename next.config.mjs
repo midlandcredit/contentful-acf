@@ -2,7 +2,7 @@
 const nextConfig = {
     output: 'export',
     distDir: 'out',
-    basePath: '/poc/',
+    basePath: '/poc',
     trailingSlash: true,
 };
 

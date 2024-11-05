@@ -7,7 +7,7 @@ export default function Loading() {
     <div>
       <img 
         className='m-[auto]' 
-        src='/loading.gif'
+        src='/poc/loading.gif'
         alt="loading gif" 
       />
     </div>

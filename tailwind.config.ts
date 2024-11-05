@@ -15,6 +15,8 @@ const config: Config = {
       'large-tablet' : '616px',
       'laptop' : '1024px',
       'large-laptop': '1650px',
+      'ultra-wide' : '2110px',
+      'xtra-wide' : '2856px'
     },
     backgroundSize: {
       '55%' : '55%'

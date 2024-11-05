@@ -33,8 +33,20 @@ export default function FooterLayout({data}) {
             if (children[0].includes('Call MCM')) {
               return (
                 <div className='flex justify-between tablet:flex-row-reverse tablet:h-[65px] tablet:relative tablet:bottom-[140px] laptop:bottom-[175px]'>
-                <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line tablet:relative tablet:bottom-[2px] tablet:left-[6%] tablet:bottom-[10%]`}>{children}</p>
-                  <div className={`w-[70px] my-[15px] relative bottom-[30px] right-[10%]  tablet:bottom-[0px] tablet:m-0 tablet:w-[19%] tablet:right-[31%] laptop:right-[25%] laptop:w-[15%]`}><img src={data.image.url} /></div>
+                 <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line 
+                  tablet:relative tablet:bottom-[2px] tablet:left-[6%] tablet:bottom-[10%]
+                  ultra-wide:top-[18px]
+                  xtra-wide:top-[35%] xtra-wide:left-[-13%]
+                  `}>{children}</p>
+                  <div 
+                  className={`w-[70px] my-[15px] relative bottom-[30px] right-[10%]  
+                  tablet:bottom-[0px] tablet:m-0 tablet:w-[19%] tablet:right-[31%] 
+                  laptop:right-[25%] laptop:w-[15%]
+                  ultra-wide:flex ultra-wide:h-[200px] ultra-wide:justify-center ultra-wide:items-center ultra-wide:max-w-[170px] ultra-wide:right-[15%]
+                  xtra-wide:top-[25px]
+                  
+                  `}
+                  ><img src={data.image.url} /></div>
                 </div>
               )
             } else if (children[0].includes('Midland Credit Management adheres')) {

@@ -87,7 +87,7 @@ export default function FaqLayout({ data, key }) {
                 (entry) => entry.sys.id === id
               ).phoneNumber
             : 'Phone number not found';
-          return <span className="underline">{phoneNumber}</span>;
+          return <a className="underline" href={`tel:${phoneNumber}`}>{phoneNumber}</a>;
         },
         [INLINES.HYPERLINK]: (node, children) => {
           return (

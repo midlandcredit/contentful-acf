@@ -21,7 +21,7 @@ export default function FooterLayout({data}) {
           const { id } = node.data.target.sys;
           const entry = data.text.links.entries.inline.some(entry => entry.sys.id === id);
           const phoneNumber = entry ? data.text.links.entries.inline.find(entry => entry.sys.id === id).phoneNumber : 'Phone number not found';
-          return <span className='text-clamp-footer'>{phoneNumber}</span>;
+          return <a className='text-clamp-footer underline' href={`tel:${phoneNumber}`}>{phoneNumber}</a>;
         },
         [BLOCKS.PARAGRAPH]: (node, children) => {
           // console.log('what is NODE.........: ', node)
@@ -50,7 +50,7 @@ export default function FooterLayout({data}) {
                 </div>
               )
             } else if (children[0].includes('Midland Credit Management adheres')) {
-                return <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line w-[80%] tablet:w-[42%] laptop:w-[55%] `}>{children}</p>
+                return <p className={`z-10 relative leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line w-[80%] tablet:w-[42%] laptop:w-[55%] `}>{children}</p>
             } else {
               return <Text>{children}</Text>
             }

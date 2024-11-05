@@ -40,7 +40,7 @@ export default function FaqLayout({ data, key }) {
 
   const OpenDrawer = () => (
     <svg
-      className="h-8 w-8 text-muted-medium-blue tablet:relative tablet:left-[5px] tablet:top-[4px]"
+      className="h-8 w-8 text-muted-medium-blue tablet:relative tablet:left-[5px] tablet:top-[4px] cursor-pointer"
       width="24"
       height="24"
       viewBox="0 0 35 35"
@@ -56,7 +56,7 @@ export default function FaqLayout({ data, key }) {
 
   const CloseDrawer = () => (
     <svg
-      className="h-8 w-8 text-muted-medium-blue tablet:relative tablet:left-[5px] tablet:top-[4px]"
+      className="h-8 w-8 text-muted-medium-blue tablet:relative tablet:left-[5px] tablet:top-[4px] cursor-pointer"
       width="24"
       height="24"
       viewBox="0 0 35 35"

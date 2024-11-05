@@ -64,7 +64,7 @@ export default function FooterLayout({data}) {
 
   return (
     <div className={`m-[auto] font-semibold p-[23px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'large-laptop:px-[200px] text-left bg-[#DFE8F8] pb-[10px]' : data.number === 1 ?  'text-center items-center bg-alice-blue' : null}`}>
-      <div className={`tablet:max-w-max-width tablet:m-auto tablet:pt-[35px] tablet:relative ${data.number === 2 ? 'tablet:left-[65px]' : null}`}>
+      <div className={`max-w-max-width tablet:m-auto tablet:pt-[35px] tablet:relative ${data.number === 2 ? 'tablet:left-[65px]' : null}`}>
         {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue font-semibold text-clamp-footer-title'>{data.title}</h3>}
           {documentToReactComponents(data.text.json, option)}
           {data.number === 1 && 

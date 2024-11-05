@@ -73,7 +73,7 @@ export default function NavigationBar({navData}) {
         const entry = navData.servicedBy.links.entries.inline.find((entry) => entry.sys.id === entryId);
 
         if (entry && entry.phoneNumber) {
-          return <a className='underline' href={entry.phoneNumber}>{entry.phoneNumber}</a>;
+          return <a className='underline' href={`tel:${entry.phoneNumber}`}>{entry.phoneNumber}</a>;
         }
         return null;
       },

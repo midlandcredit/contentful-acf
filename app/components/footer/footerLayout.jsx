@@ -33,8 +33,20 @@ export default function FooterLayout({data}) {
             if (children[0].includes('Call MCM')) {
               return (
                 <div className='flex justify-between tablet:flex-row-reverse tablet:h-[65px] tablet:relative tablet:bottom-[140px] laptop:bottom-[175px]'>
-                <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line tablet:relative tablet:bottom-[2px] tablet:left-[6%] tablet:bottom-[10%]`}>{children}</p>
-                  <div className={`w-[70px] my-[15px] relative bottom-[30px] right-[10%]  tablet:bottom-[0px] tablet:m-0 tablet:w-[19%] tablet:right-[31%] laptop:right-[25%] laptop:w-[15%]`}><img src={data.image.url} /></div>
+                <p className={`leading-[normal] m-[10px] text-clamp-footer whitespace-pre-line 
+                  tablet:relative tablet:bottom-[2px] tablet:left-[6%] tablet:bottom-[10%]
+                  ultra-wide:top-[18px]
+                  xtra-wide:top-[35%] xtra-wide:left-[-13%]
+                  `}>{children}</p>
+                  <div 
+                  className={`w-[70px] my-[15px] relative bottom-[30px] right-[10%]  
+                  tablet:bottom-[0px] tablet:m-0 tablet:w-[19%] tablet:right-[31%] 
+                  laptop:right-[25%] laptop:w-[15%]
+                  ultra-wide:flex ultra-wide:h-[200px] ultra-wide:justify-center ultra-wide:items-center ultra-wide:max-w-[170px] ultra-wide:right-[15%]
+                  xtra-wide:top-[25px]
+                  
+                  `}
+                  ><img src={data.image.url} /></div>
                 </div>
               )
             } else if (children[0].includes('Midland Credit Management adheres')) {
@@ -52,7 +64,7 @@ export default function FooterLayout({data}) {
 
   return (
     <div className={`m-[auto] font-semibold p-[23px] flex flex-col ${data.number === 3 ? 'bg-[#143B62]' : null } ${data.number === 2 ? 'large-laptop:px-[200px] text-left bg-[#DFE8F8] pb-[10px]' : data.number === 1 ?  'text-center items-center bg-alice-blue' : null}`}>
-      <div className={`tablet:w-[70%] tablet:m-auto tablet:pt-[35px] tablet:relative ${data.number === 2 ? 'tablet:left-[65px]' : null}`}>
+      <div className={`max-w-max-width tablet:w-[70%] tablet:m-auto tablet:pt-[35px] tablet:relative ${data.number === 2 ? 'tablet:left-[65px]' : null}`}>
         {data.number === 1 && <h3 className='mt-[15px] mb-[10px] text-midnight-blue font-semibold text-clamp-footer-title'>{data.title}</h3>}
           {documentToReactComponents(data.text.json, option)}
           {data.number === 1 && 

@@ -32,7 +32,7 @@ export default async function RootLayout({children}) {
   return (
     <html lang="en">
     <head>
-    <link rel="icon" href="/acfLogo.png" sizes="any" />
+      <link rel="icon" href="/acfLogo.png" sizes="any" />
     </head>
       <body  className={`${mulish.className} m-[auto] bg-alice-blue`}>
        <div className="max-w-max-width m-[auto]">
